@@ -1,0 +1,128 @@
+﻿@using CurriculumVitae.Models
+@{
+	ViewBag.Title = "Home Page";
+}
+
+<div>
+	<h2>Contact Information</h2>
+	@foreach (var ci in (IQueryable<ContactInformationList>)ViewData["ContactInformationList"])
+	{
+		<p>
+			@ci.Name
+			@ci.Title
+			@ci.Email
+			@ci.Mobile
+			@ci.GitHub
+			@ci.LinkedIn
+			@ci.Homepage
+		</p>
+	}
+</div>
+<hr />
+
+<div>
+	<h2>Education</h2>
+	@foreach (var el in (IQueryable<EducationList>)ViewData["EducationList"])
+	{
+		<div class="card" style="width: 18rem;">
+			<div class="card-body">
+				<h5 class="card-title">@el.SchoolName - <span class="card-subtitle mb-2 text-muted">@el.CityState</span></h5>
+				<h6 class="card-subtitle mb-2 text-muted">@el.Certification</h6>
+				<p class="card-text">
+					@el.Major <br />
+					@el.CompletionDate
+				</p>
+			</div>
+		</div>
+		<hr />
+	}
+</div>
+<div>
+	<h2>Introduction Statement</h2>
+	@foreach (var pi in (IQueryable<PersonalIntroductionList>)ViewData["PersonalIntroductionList"])
+	{
+		<p>@pi.PersonalIntroduction</p>
+	}
+</div>
+<div>
+	<h2>Personal Qualities</h2>
+	<div class="card" style="width: 18rem;">
+		<ul class="list-group list-group-flush">
+			@foreach (var pq in (IQueryable<PersonalQualitiesList>)ViewData["PersonalQualitiesList"])
+			{
+				<li class="list-group-item">
+					@pq.PersonalQuality
+				</li>
+			}
+		</ul>
+	</div>
+	<hr />
+</div>
+<div>
+	<h2>Portfolio Projects</h2>
+	<div class="card-deck">
+
+		@foreach (var pp in (IQueryable<PortfolioProjectsList>)ViewData["PortfolioProjectsList"])
+		{
+			<div class="card">
+				<img class="card-img-top" src="~/Content/img/svg/melonbear-transparent.svg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">@pp.ProjectTitle</h5>
+					<p class="card-text">@pp.ProjectDescription</p>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted"><a href="#">@pp.ProjectDemo</a></small>
+					<small class="text-muted"><a href="#">@pp.ProjectRepo</a></small>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+<hr />
+<div class="row">
+	<div class="col">
+		<h2>Programming Languages</h2>
+		<div class="card" style="width: 18rem;">
+			<ul class="list-group list-group-flush">
+				@foreach (var pl in (IQueryable<ProgrammingLanguagesList>)ViewData["ProgrammingLanguagesList"])
+				{
+					<li class="list-group-item">
+						@pl.ProgrammingLanguage
+					</li>
+				}
+			</ul>
+		</div>
+	</div>
+	<hr />
+	<div class="col">
+		<h2>Programming Tools</h2>
+		<div class="card" style="width: 18rem;">
+			<ul class="list-group list-group-flush">
+				@foreach (var pt in (IQueryable<ProgrammingToolsList>)ViewData["ProgrammingToolsList"])
+				{
+					<li class="list-group-item">
+						@pt.ProgrammingTool
+					</li>
+				}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<hr />
+<div>
+	<h2>Work Experience</h2>
+	@foreach (var we in (IQueryable<WorkExperienceList>)ViewData["WorkExperienceList"])
+	{
+		<div class="card" style="width: 18rem;">
+			<div class="card-body">
+				<h5 class="card-title">@we.Employer</h5>
+				<h6 class="card-subtitle mb-2 text-muted">@we.WorkTitle</h6>
+				<p class="card-text">@we.WorkDescription</p>
+				<p class="card-text">@we.StartDate - @we.EndDate</p>
+				<p class="card-text">@we.WorkLocation</p>
+			</div>
+		</div>
+		<hr />
+	}
+</div>

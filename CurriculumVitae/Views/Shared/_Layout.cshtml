@@ -1,0 +1,51 @@
+﻿@using CurriculumVitae.Models
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - Stephanie Spears</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">
+			<img src="/Content/img/svg/anpanman-eatme.svg" width="30" height="30" class="d-inline-block align-top" alt=""> Stephanie Spears
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav ml-auto">
+				<a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
+				<a class="nav-item nav-link" href="#">Contact Information</a>
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Portfolio Projects
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						@foreach (var pp in (IQueryable<PortfolioProjectsList>)ViewData["PortfolioProjectsList"])
+						{
+							<a class="dropdown-item" href="@pp.ProjectRepo">@pp.ProjectTitle</a>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - Stephanie Spears</p>
+		</footer>
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+</html>
